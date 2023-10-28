@@ -1,0 +1,1 @@
+export { ModalTask } from './ui/ModalTask';

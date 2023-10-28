@@ -1,0 +1,83 @@
+import React, { Dispatch, SetStateAction } from 'react'
+import { Modal } from '../../../shared/ui/components';
+import { ModalAddBoardContainer } from '../../modal-add-board/ui/style';
+import { TextInputContainer } from '../../../shared/ui/components/text-input/styles';
+import { ButtonContainer } from '../../../shared/ui/components/button/styles';
+import { useAppDispatch, useAppSelector } from '../../../shared/hooks/hooks';
+import { boardsSlice } from '../../../entities/board/model';
+import { RootState } from '../../../app/store';
+
+interface ModalAddColumnProps {
+  setIsColumnModalOpen: Dispatch<SetStateAction<boolean>>;
+  type: 'edit' | 'add';
+  colIndex?: number | undefined;
+}
+
+export const ModalAddColumn: React.FC<ModalAddColumnProps> = ({ setIsColumnModalOpen, type, colIndex }) => {
+  const [columnName, setColumnName] = React.useState('');
+  const [isValid, setIsValid] = React.useState(true);
+  const dispatch = useAppDispatch();
+
+  const boards = useAppSelector((state: RootState) => state.boards);
+  const board = boards.find((board) => board.isActive === true);
+  const columns = board?.columns;
+  const column = columns?.find((col, i) => i === colIndex);
+
+  React.useEffect(() => {
+    if (type === "edit") {
+
+      setColumnName(column!.name);
+    }
+  }, [column, type])
+
+  const handleColumnNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColumnName(e.target.value);
+  }
+
+  const validate = () => {
+    setIsValid(false);
+    if (!columnName.trim()) {
+      return false;
+    }
+
+    setIsValid(true);
+    return true;
+  };
+
+  const handleSubmit = () => {
+    setIsColumnModalOpen(false);
+
+    if (type === "add") {
+      dispatch(boardsSlice.actions.addColumn({ columnName }));
+    } else if (type === "edit") {
+      dispatch(boardsSlice.actions.editColumn({ columnName, colIndex }))
+    }
+  };
+
+  return (
+    <Modal onClick={(e) => {
+      if (e.target !== e.currentTarget) {
+        return;
+      };
+
+      setIsColumnModalOpen(false)
+    }}>
+      <ModalAddBoardContainer>
+        <h3>{type === 'edit' ? 'Редактировать' : 'Добавить новую'}  колонку</h3>
+
+        <div>
+          <label>Имя колонки</label>
+          <TextInputContainer id="column-name-input" type='text' value={columnName} onChange={handleColumnNameInput} />
+        </div>
+
+        <div className='buttons'>
+
+          <ButtonContainer width='100%' onClick={() => {
+            const isValid = validate();
+            if (isValid === true) handleSubmit();
+          }}>{type === 'edit' ? 'Изменить' : 'Создать'} колонку</ButtonContainer>
+        </div>
+      </ModalAddBoardContainer>
+    </Modal>
+  )
+}
