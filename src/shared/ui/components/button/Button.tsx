@@ -1,12 +1,11 @@
 import React from 'react';
 import { ButtonContainer } from './styles';
 
-interface ButtonProps {
-  children: React.ReactNode;
+interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string;
-  onClick?: React.MouseEventHandler<HTMLElement>
 }
-export const Button: React.FC<ButtonProps> = ({ children, width, onClick }) => {
+
+export const Button: React.FC<IButtonProps> = ({ children, width, onClick }) => {
   return (
     <ButtonContainer width={width} onClick={onClick}> {children}</ButtonContainer>
   )

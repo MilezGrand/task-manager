@@ -1,20 +1,18 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../shared/hooks/hooks';
+import { useAppDispatch } from '../../../shared/hooks/redux';
 import { SubtaskContainer } from './style';
 import { boardsSlice } from '../../../entities/board/model';
+import { useGetTask } from '../../../shared/hooks/useGetTask';
 
-interface SubtaskProps {
+interface ISubtaskProps {
   index: number;
   taskIndex: number | undefined;
   colIndex: number | undefined;
 }
 
-export const Subtask: React.FC<SubtaskProps> = ({ index, taskIndex, colIndex }) => {
+export const Subtask: React.FC<ISubtaskProps> = ({ index, taskIndex, colIndex }) => {
   const dispatch = useAppDispatch();
-  const boards = useAppSelector((state) => state.boards);
-  const board = boards.find((board) => board.isActive === true);
-  const col = board?.columns.find((col, i) => i === colIndex);
-  const task = col?.tasks.find((task, i) => i === taskIndex);
+  const { task } = useGetTask(colIndex, taskIndex);
   const subtask = task?.subtasks.find((subtask, i) => i === index);
   const checked = subtask?.isCompleted;
 

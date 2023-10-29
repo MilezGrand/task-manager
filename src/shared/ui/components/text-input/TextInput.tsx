@@ -1,13 +1,11 @@
 import React from 'react'
 import { TextInputContainer } from './styles'
 
-interface TextInputProps {
-  id: string;
-  value?: string;
-  placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface ITextInputProps extends React.HTMLAttributes<HTMLInputElement>{
+  value: string;
 }
-export const TextInput: React.FC<TextInputProps> = ({ id, value, placeholder, onChange }) => {
+
+export const TextInput: React.FC<ITextInputProps> = ({ id, value, placeholder, onChange }) => {
   return (
     <TextInputContainer id={id} value={value} placeholder={placeholder} onChange={onChange} />
   )

@@ -4,10 +4,6 @@ import { boardsSlice } from "../../entities/board/model";
 
 const rootReducer = boardsSlice.reducer;
 
-// const rootReducer = combineReducers({
-//   reducers...
-// });
-
 export function setupStore() {
   return configureStore({
     reducer: rootReducer,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { HomeLayout } from './style'
-import { useAppSelector } from '../../../shared/hooks/hooks';
+import { useAppSelector } from '../../../shared/hooks/redux';
 import { RootState } from '../../../app/store';
 import { AddColumn, Column } from '../../column';
 import { AddTask, Task } from '../../Task';

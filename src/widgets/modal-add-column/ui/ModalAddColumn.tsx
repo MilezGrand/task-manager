@@ -1,27 +1,22 @@
 import React, { Dispatch, SetStateAction } from 'react'
-import { Modal } from '../../../shared/ui/components';
+import { Modal, TextInput } from '../../../shared/ui/components';
 import { ModalAddBoardContainer } from '../../modal-add-board/ui/style';
-import { TextInputContainer } from '../../../shared/ui/components/text-input/styles';
 import { ButtonContainer } from '../../../shared/ui/components/button/styles';
-import { useAppDispatch, useAppSelector } from '../../../shared/hooks/hooks';
+import { useAppDispatch } from '../../../shared/hooks/redux';
 import { boardsSlice } from '../../../entities/board/model';
-import { RootState } from '../../../app/store';
+import { useGetColumn } from '../../../shared/hooks/useGetColumn';
 
-interface ModalAddColumnProps {
+interface IModalAddColumnProps {
   setIsColumnModalOpen: Dispatch<SetStateAction<boolean>>;
-  type: 'edit' | 'add';
+  type: 'edit' | 'add' | string;
   colIndex?: number | undefined;
 }
 
-export const ModalAddColumn: React.FC<ModalAddColumnProps> = ({ setIsColumnModalOpen, type, colIndex }) => {
+export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({ setIsColumnModalOpen, type, colIndex }) => {
   const [columnName, setColumnName] = React.useState('');
   const [isValid, setIsValid] = React.useState(true);
   const dispatch = useAppDispatch();
-
-  const boards = useAppSelector((state: RootState) => state.boards);
-  const board = boards.find((board) => board.isActive === true);
-  const columns = board?.columns;
-  const column = columns?.find((col, i) => i === colIndex);
+  const { column } = useGetColumn(colIndex);
 
   React.useEffect(() => {
     if (type === "edit") {
@@ -67,7 +62,7 @@ export const ModalAddColumn: React.FC<ModalAddColumnProps> = ({ setIsColumnModal
 
         <div>
           <label>Имя колонки</label>
-          <TextInputContainer id="column-name-input" type='text' value={columnName} onChange={handleColumnNameInput} />
+          <TextInput id="column-name-input" value={columnName} onChange={handleColumnNameInput} />
         </div>
 
         <div className='buttons'>

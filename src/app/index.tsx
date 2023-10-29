@@ -16,7 +16,6 @@ const App: React.FC = () => {
 
       {isBoardModalOpen && (<ModalAddBoard setIsBoardModalOpen={setIsBoardModalOpen} />)}
       
-
       <Header showSidebar={showSidebar} />
       <div style={{display: "flex"}}>
         <SideBar close={close.toString()} setIsBoardModalOpen={setIsBoardModalOpen} showSidebar={showSidebar}/>

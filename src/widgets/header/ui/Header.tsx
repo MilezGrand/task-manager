@@ -1,23 +1,21 @@
 import React from 'react';
 import { Icon } from '../../../shared/ui/components';
 import { HeaderBlock, HeaderContainer } from './styles';
-import { IconContainer } from '../../../shared/ui/components/icon/styles';
 
-interface HeaderProps {
+interface IHeaderProps {
   showSidebar: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ showSidebar,  }) => {
-
+export const Header: React.FC<IHeaderProps> = ({ showSidebar }) => {
   return (
     <HeaderContainer>
       <HeaderBlock>
-        <IconContainer onClick={showSidebar} >
+        <Icon onClick={showSidebar} >
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 384 256" fill="none">
             <path d="M24 24H360M24 128H360M24 232H360" stroke="#FC983C" strokeWidth="48" strokeMiterlimit="10" strokeLinecap="round" />
           </svg>
-        </IconContainer>
-        
+        </Icon>
+
       </HeaderBlock>
 
       <HeaderBlock style={{ width: '370px' }}>

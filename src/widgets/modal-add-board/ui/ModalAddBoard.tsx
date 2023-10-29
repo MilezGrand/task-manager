@@ -1,19 +1,18 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { ButtonContainer } from '../../../shared/ui/components/button/styles';
-import { useAppDispatch } from '../../../shared/hooks/hooks';
+import { useAppDispatch } from '../../../shared/hooks/redux';
 import { boardsSlice } from '../../../entities/board/model';
-import { TextInputContainer } from '../../../shared/ui/components/text-input/styles';
-import { Modal } from '../../../shared/ui/components';
+import { Button, Modal, TextInput } from '../../../shared/ui/components';
 import { ModalAddBoardContainer } from './style';
 
-interface ModalAddBoardProps {
+interface IModalAddBoardProps {
   setIsBoardModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ModalAddBoard: React.FC<ModalAddBoardProps> = ({ setIsBoardModalOpen }) => {
+export const ModalAddBoard: React.FC<IModalAddBoardProps> = ({ setIsBoardModalOpen }) => {
   const [boardName, setBoardName] = React.useState('');
   const dispatch = useAppDispatch();
-  const [isValid, setIsValid] = React.useState(true);
+  const [isValid, setIsValid] = React.useState(false);
 
   const handleBoardNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBoardName(e.target.value);
@@ -32,7 +31,6 @@ export const ModalAddBoard: React.FC<ModalAddBoardProps> = ({ setIsBoardModalOpe
   const handleSubmit = () => {
     setIsBoardModalOpen(false);
     dispatch(boardsSlice.actions.addBoard({ boardName }));
-
   };
 
   return (
@@ -44,20 +42,19 @@ export const ModalAddBoard: React.FC<ModalAddBoardProps> = ({ setIsBoardModalOpe
       setIsBoardModalOpen(false)
     }}>
       <ModalAddBoardContainer>
-          <h3>Добавить новую категорию</h3>
+        <h3>Добавить новую категорию</h3>
 
-          <div>
-            <label>Имя категории</label>
-            <TextInputContainer id="board-name-input" type='text' value={boardName} onChange={handleBoardNameInput} />
-          </div>
+        <div>
+          <label>Имя категории</label>
+          <TextInput id="board-name-input" value={boardName} onChange={handleBoardNameInput} />
+        </div>
 
-          <div className='buttons'>
-            
-            <ButtonContainer width='100%' onClick={() => {
-              const isValid = validate();
-              if (isValid === true) handleSubmit();
-            }}>Создать категорию</ButtonContainer>
-          </div>
+        <div className='buttons'>
+          <Button width='100%' onClick={() => {
+            const isValid = validate();
+            if (isValid === true) handleSubmit();
+          }}>Создать категорию</Button>
+        </div>
       </ModalAddBoardContainer>
     </Modal>
   )

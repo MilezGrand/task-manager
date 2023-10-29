@@ -16,6 +16,11 @@ export const ModalTaskContainer = styled(ModalContainer)`
     
   }
 
+  & .modal-task-header div {
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+  
   & label {
     margin-top: 32px;
   }

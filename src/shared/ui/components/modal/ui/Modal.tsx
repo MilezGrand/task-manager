@@ -1,12 +1,7 @@
 import React from 'react'
-import { ModalOverlay, ModalContainer } from './style';
+import { ModalOverlay } from './style';
 
-interface ModalProps {
-  children: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLElement>;
-}
-
-export const Modal: React.FC<ModalProps> = ({ children, onClick }) => {
+export const Modal: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ children, onClick }) => {
   return (
     <ModalOverlay onClick={onClick}>
         {children}

@@ -21,7 +21,7 @@ export const ModalAddTaskContainer = styled(ModalContainer)`
     align-items: center;
   }
 
-  & svg {
+  & .subtask-name div {
     margin: 8px 8px 8px 12px;
     width: 18px;
     cursor: pointer;
