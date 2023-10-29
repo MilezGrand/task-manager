@@ -14,7 +14,6 @@ export const SideBarContainer = styled.div<SideBarProps>`
   transition: 0.2s all ease-in-out;
   width: 250px;
   left: ${(props) => (props.close === "true" ? "-350px" : "0")};
-  /* max-width: ${(props) => (props.close === "true" ? "0px" : "300px")}; */
   z-index: 1;
   background-color: #fff;
 
