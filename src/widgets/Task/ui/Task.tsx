@@ -41,12 +41,12 @@ export const Task: React.FC<TaskProps> = ({ colIndex, taskIndex }) => {
         {Boolean(task?.subtasks.length) ? (<p className='task-subtasks'>{completed} из {task?.subtasks.length} завершено</p>) : (<p className='task-subtasks'>{task?.description}</p>)}
       </TaskContainer>
 
-      {isTaskModalOpen && (
-        <ModalTask
-          setIsTaskModalOpen={setIsTaskModalOpen}
-          colIndex={colIndex}
-          taskIndex={taskIndex}
-        />)}
+      <ModalTask
+        setIsTaskModalOpen={setIsTaskModalOpen}
+        colIndex={colIndex}
+        taskIndex={taskIndex}
+        isOpen={isTaskModalOpen}
+      />
     </>
   )
 }

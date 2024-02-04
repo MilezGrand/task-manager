@@ -1,14 +1,18 @@
 import styled from "styled-components";
-import { ModalContainer } from "../../../shared/ui/components/modal/ui/style";
 
-export const ModalAddTaskContainer = styled(ModalContainer)`
+export const ModalAddTaskContainer = styled.div`
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 20rem;
+  
   & div {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 32px;
   }
-  
+
   & h3 {
     color: #000;
     font-weight: 700;
@@ -36,4 +40,4 @@ export const ModalAddTaskContainer = styled(ModalContainer)`
     justify-content: space-between;
     height: 100px;
   }
-`
+`;

@@ -21,7 +21,8 @@ export const AddTask: React.FC<AddTaskProps> = ({ colIndex }) => {
         </span>
 
       </AddTaskContainer>
-      {isAddTaskModalOpen && (<ModalAddTask setIsModalAddTaskOpen={setIsAddTaskModalOpen} colIndex={colIndex} type='add' />)}
+      
+      <ModalAddTask setIsModalAddTaskOpen={setIsAddTaskModalOpen} colIndex={colIndex} type='add' isOpen={isAddTaskModalOpen}/>
     </>
 
   )

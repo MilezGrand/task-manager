@@ -4,16 +4,24 @@ import { useAppDispatch } from '../../../shared/hooks/redux';
 import { boardsSlice } from '../../../entities/board/model';
 import { Button, Modal, TextInput } from '../../../shared/ui/components';
 import { ModalAddBoardContainer } from './style';
+import { useMount } from '../../../shared/hooks/useMount';
 
 interface IModalAddBoardProps {
   setIsBoardModalOpen: Dispatch<SetStateAction<boolean>>;
+  isOpen: boolean;
 }
 
-export const ModalAddBoard: React.FC<IModalAddBoardProps> = ({ setIsBoardModalOpen }) => {
+export const ModalAddBoard: React.FC<IModalAddBoardProps> = ({ setIsBoardModalOpen, isOpen }) => {
   const [boardName, setBoardName] = React.useState('');
   const dispatch = useAppDispatch();
   const [isValid, setIsValid] = React.useState(false);
+  const { mounted } = useMount({ isOpen });
 
+  if (!mounted) {
+    return null;
+  }
+  let completed = 0;
+  
   const handleBoardNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBoardName(e.target.value);
   }
@@ -40,7 +48,7 @@ export const ModalAddBoard: React.FC<IModalAddBoardProps> = ({ setIsBoardModalOp
       };
 
       setIsBoardModalOpen(false)
-    }}>
+    }} isOpen={isOpen}>
       <ModalAddBoardContainer>
         <h3>Добавить новую категорию</h3>
 

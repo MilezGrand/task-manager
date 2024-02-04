@@ -11,15 +11,26 @@ export const ModalOverlay = styled.div`
   top: 0;
   justify-content: center;
   align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ModalContainer = styled.div`
-  width: 20rem;
-  border-radius: 15px;
-  background-color: #fff;
-  padding: 32px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  align-items: center;
+  bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  padding: 36px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 4;
 
   & label {
     color: #4b5563;

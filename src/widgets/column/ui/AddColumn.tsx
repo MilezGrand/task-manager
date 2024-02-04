@@ -19,7 +19,7 @@ export const AddColumn: React.FC = () => {
           Добавить колонку
         </span>
       </AddColumnContainer>
-      {isColumnModalOpen && (<ModalAddColumn setIsColumnModalOpen={setIsColumnModalOpen} type='add' />)}
+      <ModalAddColumn setIsColumnModalOpen={setIsColumnModalOpen} type='add' isOpen={isColumnModalOpen}/>
     </>
   )
 }

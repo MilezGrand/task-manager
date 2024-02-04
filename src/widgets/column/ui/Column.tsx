@@ -64,7 +64,7 @@ export const Column: React.FC<IColumnProps> = ({ children, colIndex }) => {
         </div>
         {children}
       </ColumnContainer>
-      {isColumnModalOpen && (<ModalAddColumn setIsColumnModalOpen={setIsColumnModalOpen} type='edit' colIndex={colIndex} />)}
+      <ModalAddColumn setIsColumnModalOpen={setIsColumnModalOpen} type='edit' colIndex={colIndex} isOpen={isColumnModalOpen}/>
     </>
 
   )

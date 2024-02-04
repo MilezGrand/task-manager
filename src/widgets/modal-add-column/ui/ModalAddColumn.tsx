@@ -5,14 +5,16 @@ import { ButtonContainer } from '../../../shared/ui/components/button/styles';
 import { useAppDispatch } from '../../../shared/hooks/redux';
 import { boardsSlice } from '../../../entities/board/model';
 import { useGetColumn } from '../../../shared/hooks/useGetColumn';
+import { useMount } from '../../../shared/hooks/useMount';
 
 interface IModalAddColumnProps {
   setIsColumnModalOpen: Dispatch<SetStateAction<boolean>>;
   type: 'edit' | 'add' | string;
   colIndex?: number | undefined;
+  isOpen: boolean;
 }
 
-export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({ setIsColumnModalOpen, type, colIndex }) => {
+export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({ setIsColumnModalOpen, type, colIndex, isOpen }) => {
   const [columnName, setColumnName] = React.useState('');
   const [isValid, setIsValid] = React.useState(true);
   const dispatch = useAppDispatch();
@@ -25,6 +27,12 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({ setIsColumnModa
     }
   }, [column, type])
 
+  const { mounted } = useMount({ isOpen });
+
+  if (!mounted) {
+    return null;
+  }
+  
   const handleColumnNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColumnName(e.target.value);
   }
@@ -56,7 +64,7 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({ setIsColumnModa
       };
 
       setIsColumnModalOpen(false)
-    }}>
+    }} isOpen={isOpen}>
       <ModalAddBoardContainer>
         <h3>{type === 'edit' ? 'Редактировать' : 'Добавить новую'}  колонку</h3>
 

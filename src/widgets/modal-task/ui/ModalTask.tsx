@@ -6,22 +6,28 @@ import { Subtask } from '../../subtask';
 import { Dropdown } from '../../dropdown';
 import { ModalAddTask } from '../../modal-add-task';
 import { boardsSlice } from '../../../entities/board/model';
-import { Icon } from '../../../shared/ui/components';
+import { Icon, Modal } from '../../../shared/ui/components';
 import { useGetTask } from '../../../shared/hooks/useGetTask';
+import { useMount } from '../../../shared/hooks/useMount';
 
 interface IModalTaskProps {
   setIsTaskModalOpen: Dispatch<SetStateAction<boolean>>;
   colIndex?: number;
   taskIndex?: number;
+  isOpen: boolean;
 }
 
-export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIndex, taskIndex }) => {
+export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIndex, taskIndex, isOpen }) => {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = React.useState(false);
   const [isModalAddTaskOpen, setIsModalAddTaskOpen] = React.useState(false);
   const { task } = useGetTask(colIndex, taskIndex);
   const subtasks = task?.subtasks;
   const dispatch = useAppDispatch();
+  const { mounted } = useMount({ isOpen });
 
+  if (!mounted) {
+    return null;
+  }
   let completed = 0;
   subtasks?.forEach((subtask) => {
     if (subtask.isCompleted) {
@@ -34,6 +40,7 @@ export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIn
       return;
     }
     setIsTaskModalOpen(false);
+    setIsDropdownMenuOpen(false);
   };
 
   const handleDropdown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -53,7 +60,7 @@ export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIn
 
   return (
     <>
-      <ModalOverlay onClick={(e) => handleClose(e)}>
+      <Modal onClick={(e) => handleClose(e)} isOpen={isOpen}>
         <ModalTaskContainer>
           <div className='modal-task-header '>
             <h3>{task?.title}</h3>
@@ -80,17 +87,18 @@ export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIn
             ))}
           </div>)}
         </ModalTaskContainer>
-      </ModalOverlay>
+      </Modal>
 
-      {isModalAddTaskOpen && (
-        <ModalAddTask
-          setIsModalAddTaskOpen={setIsModalAddTaskOpen}
-          setIsTaskModalOpen={setIsTaskModalOpen}
-          type="edit"
-          taskIndex={taskIndex}
-          colIndex={colIndex}
-        />
-      )}
+
+      <ModalAddTask
+        setIsModalAddTaskOpen={setIsModalAddTaskOpen}
+        setIsTaskModalOpen={setIsTaskModalOpen}
+        type="edit"
+        taskIndex={taskIndex}
+        colIndex={colIndex}
+        isOpen={isModalAddTaskOpen}
+      />
+
     </>
 
   )

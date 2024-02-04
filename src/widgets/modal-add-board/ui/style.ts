@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { ModalContainer } from "../../../shared/ui/components/modal/ui/style";
 
-export const ModalAddBoardContainer = styled(ModalContainer)`
+export const ModalAddBoardContainer = styled.div`
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 20rem;
+
   & div {
     width: 100%;
     display: flex;

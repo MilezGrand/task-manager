@@ -11,7 +11,8 @@ export const TextInputContainer = styled.input`
   display: block;
   box-sizing: border-box;
   border: 1px solid grey;
-
+  caret-color: #fc983c;
+  
   &:focus {
     outline-color: #fc983c;
   }
@@ -26,9 +27,11 @@ export const TextAreaContainer = styled.textarea`
   min-width: 100%;
   max-width: 100%;
   min-height: 100px;
+  max-height: 300px;
   display: block;
   box-sizing: border-box;
   border: 1px solid grey;
+  caret-color: #fc983c;
 
   &:focus {
     outline-color: #fc983c;

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { boardsSlice } from '../../../entities/board/model';
 import { useAppDispatch } from '../../../shared/hooks/redux';
 import { useGetTask } from '../../../shared/hooks/useGetTask';
+import { useMount } from '../../../shared/hooks/useMount';
 
 interface IModalAddTaskProps {
   setIsModalAddTaskOpen: Dispatch<SetStateAction<boolean>>;
@@ -13,9 +14,10 @@ interface IModalAddTaskProps {
   colIndex: number | undefined;
   type: 'edit' | 'add' | string;
   taskIndex?: number;
+  isOpen: boolean;
 }
 
-export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOpen, colIndex, setIsTaskModalOpen, type, taskIndex }) => {
+export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOpen, colIndex, setIsTaskModalOpen, type, taskIndex, isOpen }) => {
   const [taskTitle, setTaskTitle] = React.useState('');
   const [taskDescription, setTaskDescription] = React.useState('');
   const [subtasksNames, setSubtasksNames] = React.useState([
@@ -26,6 +28,9 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
 
   const { task } = useGetTask(colIndex, taskIndex);
 
+
+  
+
   React.useEffect(() => {
     if (type === "edit") {
 
@@ -35,11 +40,16 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
         })
       );
 
-
       setTaskTitle(task!.title);
       setTaskDescription(task!.description);
     }
   }, [task, type])
+  
+  const { mounted } = useMount({ isOpen });
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleTaskTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(e.target.value);
@@ -110,15 +120,14 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
   };
 
   return (
-    <Modal onClick={(e) => {
-      if (e.target !== e.currentTarget) {
+    <Modal isOpen={isOpen} onClick={(e) => {
+      if(e.target !== e.currentTarget) {
         return;
-      };
-
+      }
       setIsModalAddTaskOpen(false);
     }}>
       <ModalAddTaskContainer>
-        <h3>{type === 'edit' ? 'Редактировать' : 'Добавить новую'}  задачу</h3>
+        <h3>{type === 'edit' ? 'Редактировать' : 'Добавить новую'} задачу</h3>
 
         <div>
           <label>Имя задачи</label>

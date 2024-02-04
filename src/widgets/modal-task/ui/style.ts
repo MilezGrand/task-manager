@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { ModalContainer } from "../../../shared/ui/components/modal/ui/style";
 
-export const ModalTaskContainer = styled(ModalContainer)`
+export const ModalTaskContainer = styled.div`
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 20rem;
+
   & .modal-task-header {
     display: flex;
     position: relative;
@@ -29,7 +33,6 @@ export const ModalTaskContainer = styled(ModalContainer)`
     width: 100%;
     display: flex;
     flex-direction: column;
-    
   }
 
   & h3 {
