@@ -1,10 +1,9 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { ButtonContainer } from '../../../shared/ui/components/button/styles';
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { boardsSlice } from '../../../entities/board/model';
-import { Button, Modal, TextInput } from '../../../shared/ui/components';
-import { ModalAddBoardContainer } from './style';
-import { useMount } from '../../../shared/hooks/useMount';
+import React, { Dispatch, SetStateAction } from "react";
+import { useAppDispatch } from "../../../shared/hooks/redux";
+import { boardsSlice } from "../../../entities/board/model";
+import { Button, Modal, TextInput } from "../../../shared/ui";
+import { ModalAddBoardContainer } from "./style";
+import { useMount } from "../../../shared/hooks/useMount";
 
 interface IModalAddBoardProps {
   setIsBoardModalOpen: Dispatch<SetStateAction<boolean>>;

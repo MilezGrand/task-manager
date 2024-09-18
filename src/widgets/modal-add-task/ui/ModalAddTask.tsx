@@ -1,12 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { Button, Icon, Modal, TextInput } from '../../../shared/ui/components'
-import { ModalAddTaskContainer } from './style';
-import { TextAreaContainer } from '../../../shared/ui/components/text-input/styles';
+import React, { Dispatch, SetStateAction } from "react";
+import { Button, Icon, Modal, TextInput } from "../../../shared/ui";
+import { ModalAddTaskContainer } from "./style";
+import { TextAreaContainer } from "../../../shared/ui/text-input/styles";
 import { v4 as uuidv4 } from "uuid";
-import { boardsSlice } from '../../../entities/board/model';
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { useGetTask } from '../../../shared/hooks/useGetTask';
-import { useMount } from '../../../shared/hooks/useMount';
+import { boardsSlice } from "../../../entities/board/model";
+import { useAppDispatch } from "../../../shared/hooks/redux";
+import { useGetTask } from "../../../shared/hooks/useGetTask";
+import { useMount } from "../../../shared/hooks/useMount";
 
 interface IModalAddTaskProps {
   setIsModalAddTaskOpen: Dispatch<SetStateAction<boolean>>;

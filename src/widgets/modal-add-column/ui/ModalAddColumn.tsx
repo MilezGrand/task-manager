@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { Modal, TextInput } from '../../../shared/ui/components';
-import { ModalAddBoardContainer } from '../../modal-add-board/ui/style';
-import { ButtonContainer } from '../../../shared/ui/components/button/styles';
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { boardsSlice } from '../../../entities/board/model';
-import { useGetColumn } from '../../../shared/hooks/useGetColumn';
-import { useMount } from '../../../shared/hooks/useMount';
+import React, { Dispatch, SetStateAction } from "react";
+import { Modal, TextInput } from "../../../shared/ui";
+import { ModalAddBoardContainer } from "../../modal-add-board/ui/style";
+import { ButtonContainer } from "../../../shared/ui/button/styles";
+import { useAppDispatch } from "../../../shared/hooks/redux";
+import { boardsSlice } from "../../../entities/board/model";
+import { useGetColumn } from "../../../shared/hooks/useGetColumn";
+import { useMount } from "../../../shared/hooks/useMount";
 
 interface IModalAddColumnProps {
   setIsColumnModalOpen: Dispatch<SetStateAction<boolean>>;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TextInputContainer = styled.input`
-  padding: 8px 16px;
+  padding: 8px 12px;
   margin-top: 8px;
   border-radius: 8px;
   font-weight: 600;
@@ -10,16 +10,17 @@ export const TextInputContainer = styled.input`
   height: 38px;
   display: block;
   box-sizing: border-box;
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   caret-color: #fc983c;
-  
+  outline: none;
+
   &:focus {
-    outline-color: #fc983c;
+    border-color: #fc983c;
   }
 `;
 
 export const TextAreaContainer = styled.textarea`
-  padding: 8px 16px;
+  padding: 8px 12px;
   margin-top: 8px;
   border-radius: 8px;
   font-weight: 700;
@@ -30,10 +31,11 @@ export const TextAreaContainer = styled.textarea`
   max-height: 300px;
   display: block;
   box-sizing: border-box;
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   caret-color: #fc983c;
+  outline: none;
 
   &:focus {
-    outline-color: #fc983c;
+    border-color: #fc983c;
   }
 `;

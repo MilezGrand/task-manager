@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAppSelector } from './redux';
 
 export const useGetColumn = ( colIndex: number | undefined ) => {

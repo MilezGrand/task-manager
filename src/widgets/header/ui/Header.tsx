@@ -1,6 +1,6 @@
-import React from 'react';
-import { Icon } from '../../../shared/ui/components';
-import { HeaderBlock, HeaderContainer } from './styles';
+import React from "react";
+import { Icon } from "../../../shared/ui";
+import { HeaderBlock, HeaderContainer } from "./styles";
 
 interface IHeaderProps {
   showSidebar: () => void;

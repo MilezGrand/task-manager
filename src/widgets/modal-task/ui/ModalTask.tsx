@@ -1,14 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { ModalOverlay } from '../../../shared/ui/components/modal/ui/style'
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { ModalTaskContainer } from './style';
-import { Subtask } from '../../subtask';
-import { Dropdown } from '../../dropdown';
-import { ModalAddTask } from '../../modal-add-task';
-import { boardsSlice } from '../../../entities/board/model';
-import { Icon, Modal } from '../../../shared/ui/components';
-import { useGetTask } from '../../../shared/hooks/useGetTask';
-import { useMount } from '../../../shared/hooks/useMount';
+import React, { Dispatch, SetStateAction } from "react";
+import { ModalTaskContainer } from "./style";
+import { Subtask } from "../../subtask";
+import { Dropdown } from "../../dropdown";
+import { ModalAddTask } from "../../modal-add-task";
+import { boardsSlice } from "../../../entities/board/model";
+import { useGetTask, useAppDispatch, useMount } from "../../../shared/hooks";
+import { Modal, Icon } from "../../../shared/ui";
 
 interface IModalTaskProps {
   setIsTaskModalOpen: Dispatch<SetStateAction<boolean>>;

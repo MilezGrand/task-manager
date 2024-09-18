@@ -1,10 +1,9 @@
-import React from 'react'
-import { ModalOverlay } from './style';
-import Portal from '../../portal';
-import { ModalContainer } from './style';
+import React from "react";
+import { ModalOverlay } from "./style";
+import Portal from "../portal/Portal";
+import { ModalContainer } from "./style";
 import { CSSTransition } from "react-transition-group";
 import animationStyles from "./animation.module.scss";
-import { useMount } from '../../../../hooks/useMount';
 
 const overlayAnimation = {
   enter: animationStyles.overlayEnter,
@@ -20,22 +19,19 @@ const contentAnimation = {
   exitActive: animationStyles.contentExitActive,
 };
 
-interface IModalProps extends React.HTMLAttributes<HTMLDivElement> {
+type propsType = React.HTMLAttributes<HTMLDivElement> & {
   isOpen: boolean;
-  // onClose: () => void;
-}
+};
 
-export const Modal: React.FC<IModalProps> = ({ children, onClick, isOpen }) => {
+export const Modal = ({ children, onClick, isOpen }: propsType) => {
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const contentRef = React.useRef<HTMLDivElement>(null);
-  
-  const [animationIn, setAnimationIn] = React.useState(false);
 
+  const [animationIn, setAnimationIn] = React.useState(false);
 
   React.useEffect(() => {
     setAnimationIn(isOpen);
   }, [isOpen]);
-
 
   return (
     <Portal>
@@ -63,6 +59,5 @@ export const Modal: React.FC<IModalProps> = ({ children, onClick, isOpen }) => {
         </ModalContainer>
       </CSSTransition>
     </Portal>
-
-  )
-}
+  );
+};

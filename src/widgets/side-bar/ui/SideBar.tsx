@@ -1,10 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { SideBarContainer, SideBarList, SideBarListItem } from './styles';
-import { useAppDispatch, useAppSelector } from '../../../shared/hooks/redux';
-import { RootState } from '../../../app/store';
-import { boardsSlice } from '../../../entities/board/model';
-import { ButtonContainer } from '../../../shared/ui/components/button/styles';
-import { Icon } from '../../../shared/ui/components';
+import React, { Dispatch, SetStateAction } from "react";
+import { SideBarContainer, SideBarList, SideBarListItem } from "./styles";
+import { useAppDispatch, useAppSelector } from "../../../shared/hooks/redux";
+import { RootState } from "../../../app/store";
+import { boardsSlice } from "../../../entities/board/model";
+import { ButtonContainer } from "../../../shared/ui/button/styles";
+import { Icon } from "../../../shared/ui";
 
 interface ISideBarProps {
   close: string;

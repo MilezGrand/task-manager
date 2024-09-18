@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export const useMount = ({isOpen}: {isOpen: boolean}) => {
   const [mounted, setMounted] = React.useState(false);
 
