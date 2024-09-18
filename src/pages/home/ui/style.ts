@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ColumnContainer } from "../../column/ui/style";
 
 export const HomeLayout = styled.div`
   padding: 100px 30px 0 30px;
@@ -15,6 +14,3 @@ export const HomeLayout = styled.div`
     background-color: white;
   }
 `;
-
-
-
