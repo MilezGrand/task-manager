@@ -1,1 +1,1 @@
-export { boardsSlice } from "./board";
+export { boardsSlice } from "./slice";

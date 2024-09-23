@@ -1,11 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { ModalTaskContainer } from "./style";
 import { Subtask } from "../../subtask";
-import { Dropdown } from "../../dropdown";
 import { ModalAddTask } from "../../modal-add-task";
 import { boardsSlice } from "../../../entities/board/model";
 import { useGetTask, useAppDispatch, useMount } from "../../../shared/hooks";
-import { Modal, Icon } from "../../../shared/ui";
+import { Modal, Icon, Dropdown } from "../../../shared/ui";
 
 type propsType = {
   setIsTaskModalOpen: Dispatch<SetStateAction<boolean>>;

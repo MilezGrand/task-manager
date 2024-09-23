@@ -1,9 +1,9 @@
 import React from "react";
 import { AddColumnContainer } from "./style";
-import { ModalAddColumn } from "../../modal-add-column";
 import { Icon } from "../../../shared/ui";
+import { ModalAddColumn } from "../../../widgets/modal-add-column";
 
-export const AddColumn: React.FC = () => {
+export const AddColumn = () => {
   const [isColumnModalOpen, setIsColumnModalOpen] = React.useState(false);
 
   return (

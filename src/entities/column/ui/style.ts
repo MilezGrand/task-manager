@@ -22,14 +22,11 @@ export const ColumnContainer = styled.div`
   }
 
   & .column-header svg {
-    /* margin-bottom: 8px; */
     width: 30px;
     height: 30px;
     display: none;
-    /* margin: 0 0 0 22px; */
     cursor: pointer;
   }
-
 `;
 
 export const AddColumnContainer = styled(ColumnContainer)`
@@ -50,5 +47,4 @@ export const AddColumnContainer = styled(ColumnContainer)`
     color: #588eff;
     font-weight: 700;
   }
-
 `;
