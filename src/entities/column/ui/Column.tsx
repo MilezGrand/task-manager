@@ -2,16 +2,15 @@ import React from "react";
 import { ColumnContainer } from "./style";
 import { useAppDispatch } from "../../../shared/hooks/redux";
 import { boardsSlice } from "../../../entities/board/model";
-import { Dropdown } from "../../dropdown";
-import { ModalAddColumn } from "../../modal-add-column";
-import { Icon } from "../../../shared/ui";
+import { Dropdown, Icon } from "../../../shared/ui";
 import { useGetColumn } from "../../../shared/hooks/useGetColumn";
+import { ModalAddColumn } from "../../../widgets/modal-add-column";
 
-interface IColumnProps extends React.HTMLAttributes<HTMLDivElement> {
+type propsType = React.HTMLAttributes<HTMLDivElement> & {
   colIndex: number;
-}
+};
 
-export const Column: React.FC<IColumnProps> = ({ children, colIndex }) => {
+export const Column = ({ children, colIndex }: propsType) => {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = React.useState(false);
   const [isColumnModalOpen, setIsColumnModalOpen] = React.useState(false);
   const dispatch = useAppDispatch();

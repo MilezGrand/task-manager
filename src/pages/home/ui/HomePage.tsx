@@ -4,9 +4,9 @@ import { ModalAddBoard } from "../../../widgets/modal-add-board";
 import { SideBar } from "../../../widgets/side-bar";
 import { RootState } from "../../../app/store";
 import { useAppSelector } from "../../../shared/hooks";
-import { Column, AddColumn } from "../../../widgets/column";
 import { HomeLayout } from "./style";
-import { Task, AddTask } from "../../../widgets/Task";
+import { Column, AddColumn } from "../../../entities/column";
+import { Task, AddTask } from "../../../entities/task";
 
 function HomePage() {
   const [close, setClose] = React.useState(true);

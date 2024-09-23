@@ -1,14 +1,14 @@
-import React from 'react'
-import { TaskContainer } from './style';
-import { useAppSelector } from '../../../shared/hooks/redux';
-import { ModalTask } from '../../modal-task';
+import React from "react";
+import { useAppSelector } from "../../../shared/hooks/redux";
+import { ModalTask } from "../../../widgets/modal-task";
+import { TaskContainer } from "./style";
 
-interface TaskProps {
+type propsType = {
   colIndex: number;
   taskIndex: number;
-}
+};
 
-export const Task: React.FC<TaskProps> = ({ colIndex, taskIndex }) => {
+export const Task = ({ colIndex, taskIndex }: propsType) => {
   const boards = useAppSelector((state) => state.boards);
   const [isTaskModalOpen, setIsTaskModalOpen] = React.useState(false);
 
@@ -34,11 +34,21 @@ export const Task: React.FC<TaskProps> = ({ colIndex, taskIndex }) => {
 
   return (
     <>
-      <TaskContainer onClick={() => {
-        setIsTaskModalOpen(true);
-      }} onDragStart={handleDrag} draggable>
-        <p className='task-title'>{task?.title}</p>
-        {Boolean(task?.subtasks.length) ? (<p className='task-subtasks'>{completed} из {task?.subtasks.length} завершено</p>) : (<p className='task-subtasks'>{task?.description}</p>)}
+      <TaskContainer
+        onClick={() => {
+          setIsTaskModalOpen(true);
+        }}
+        onDragStart={handleDrag}
+        draggable
+      >
+        <p className="task-title">{task?.title}</p>
+        {Boolean(task?.subtasks.length) ? (
+          <p className="task-subtasks">
+            {completed} из {task?.subtasks.length} завершено
+          </p>
+        ) : (
+          <p className="task-subtasks">{task?.description}</p>
+        )}
       </TaskContainer>
 
       <ModalTask
@@ -48,5 +58,5 @@ export const Task: React.FC<TaskProps> = ({ colIndex, taskIndex }) => {
         isOpen={isTaskModalOpen}
       />
     </>
-  )
-}
+  );
+};

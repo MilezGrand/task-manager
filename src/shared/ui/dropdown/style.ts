@@ -10,20 +10,20 @@ export const DropdownContainer = styled.ul`
   right: 0;
   top: 30px;
   list-style: none;
+`;
 
-  & li {
-    margin: 4px;
-    padding: 8px 12px;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-  }
+export const DropdownItem = styled.li`
+  margin: 4px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
 
-  & li:hover {
+  &:hover {
     background-color: #f6f9fe;
   }
-  
-  & li:nth-child(2) {
+
+  &:nth-child(2) {
     color: #ef4444;
   }
 `;
