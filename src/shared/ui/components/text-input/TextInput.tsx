@@ -3,6 +3,7 @@ import { TextInputContainer } from './styles'
 
 interface ITextInputProps extends React.HTMLAttributes<HTMLInputElement>{
   value: string;
+  placeholder?: string;
 }
 
 export const TextInput: React.FC<ITextInputProps> = ({ id, value, placeholder, onChange }) => {
