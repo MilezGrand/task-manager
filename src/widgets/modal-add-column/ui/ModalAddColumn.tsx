@@ -35,7 +35,7 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({
   if (!mounted) {
     return null;
   }
-  
+
   const handleColumnNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColumnName(e.target.value);
   };
@@ -51,11 +51,14 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({
   };
 
   const handleSubmit = () => {
-    setIsColumnModalOpen(false);
+    const isValid = validate();
 
-    if (type === "add") {
-      dispatch(boardsSlice.actions.addColumn({ columnName }));
-    } else if (type === "edit") {
+    if (isValid === true) {
+      setIsColumnModalOpen(false);
+
+      if (type === "add") {
+        dispatch(boardsSlice.actions.addColumn({ columnName }));
+      } else if (type === "edit") {
         dispatch(boardsSlice.actions.editColumn({ columnName, colIndex }));
       }
     }
@@ -64,8 +67,8 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({
   return (
     <Modal
       onClick={(e) => {
-      if (e.target !== e.currentTarget) {
-        return;
+        if (e.target !== e.currentTarget) {
+          return;
         }
 
         setIsColumnModalOpen(false);
@@ -84,12 +87,10 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({
           />
         </div>
 
-        <div className='buttons'>
-
-          <ButtonContainer width='100%' onClick={() => {
-            const isValid = validate();
-            if (isValid === true) handleSubmit();
-          }}>{type === 'edit' ? 'Изменить' : 'Создать'} колонку</ButtonContainer>
+        <div className="buttons">
+          <Button width="100%">
+            {type === "edit" ? "Изменить" : "Создать"} колонку
+          </Button>
         </div>
       </ModalAddBoardContainer>
     </Modal>

@@ -3,8 +3,7 @@ import { SideBarContainer, SideBarList, SideBarListItem } from './styles';
 import { useAppDispatch, useAppSelector } from '../../../shared/hooks/redux';
 import { RootState } from '../../../app/store';
 import { boardsSlice } from '../../../entities/board/model';
-import { ButtonContainer } from '../../../shared/ui/components/button/styles';
-import { Icon } from '../../../shared/ui/components';
+import { Button, Icon } from '@shared/ui/components';
 
 interface ISideBarProps {
   close: string;
@@ -40,7 +39,7 @@ export const SideBar: React.FC<ISideBarProps> = ({ close, setIsBoardModalOpen, s
         })}
       </SideBarList>
 
-      <ButtonContainer className='add-board' onClick={() => setIsBoardModalOpen(true)}>
+      <Button className='add-board' onClick={() => setIsBoardModalOpen(true)}>
         <Icon>
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 24 24">
             <path fill="#588eff" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
@@ -48,7 +47,7 @@ export const SideBar: React.FC<ISideBarProps> = ({ close, setIsBoardModalOpen, s
         </Icon>
 
         <span>Создать категорию</span>
-      </ButtonContainer>
+      </Button>
     </SideBarContainer>
   )
 };

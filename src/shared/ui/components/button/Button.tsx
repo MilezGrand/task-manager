@@ -1,12 +1,48 @@
-import React from 'react';
-import { ButtonContainer } from './styles';
+import { ButtonHTMLAttributes } from "react";
+import styled from "styled-components";
 
-interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type propsType = ButtonHTMLAttributes<HTMLButtonElement> & {
   width?: string;
-}
-
-export const Button: React.FC<IButtonProps> = ({ children, width, onClick }) => {
-  return (
-    <ButtonContainer width={width} onClick={onClick}> {children}</ButtonContainer>
-  )
 };
+
+const Button = ({ children, width, ...props }: propsType) => {
+  return (
+    <SryledButton width={width} {...props}>
+      {children}
+    </SryledButton>
+  );
+};
+
+const SryledButton = styled.button<{ width?: string }>`
+  border: none;
+  height: 40px;
+  border-radius: 50px;
+  background-color: #fc983c;
+  color: #fff;
+  width: ${(props) => props.width || "175px"};
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+
+  margin: 0 auto;
+  align-content: center;
+  &:hover {
+    background-color: #ff7d41;
+  }
+
+  &.add-board {
+    display: flex;
+    background-color: #fff;
+    color: #588eff;
+    width: 250px;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+  }
+
+  &.add-board:hover {
+    background-color: rgba(88, 142, 255, 0.1);
+  }
+`;
+
+export default Button;
