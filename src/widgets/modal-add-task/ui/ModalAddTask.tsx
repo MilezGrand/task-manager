@@ -1,25 +1,31 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { Button, Icon, Modal, TextInput } from '../../../shared/ui/components'
-import { ModalAddTaskContainer } from './style';
-import { TextAreaContainer } from '../../../shared/ui/components/text-input/styles';
+import React, { Dispatch, SetStateAction } from "react";
+import { Button, Icon, Modal, TextAreaInput, TextInput } from "@shared/ui/components";
+import { ModalAddTaskContainer } from "./style";
 import { v4 as uuidv4 } from "uuid";
-import { boardsSlice } from '../../../entities/board/model';
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { useGetTask } from '../../../shared/hooks/useGetTask';
-import { useMount } from '../../../shared/hooks/useMount';
+import { boardsSlice } from "../../../entities/board/model";
+import { useAppDispatch } from "../../../shared/hooks/redux";
+import { useGetTask } from "../../../shared/hooks/useGetTask";
+import { useMount } from "../../../shared/hooks/useMount";
 
 interface IModalAddTaskProps {
   setIsModalAddTaskOpen: Dispatch<SetStateAction<boolean>>;
   setIsTaskModalOpen?: Dispatch<SetStateAction<boolean>>;
   colIndex: number | undefined;
-  type: 'edit' | 'add' | string;
+  type: "edit" | "add" | string;
   taskIndex?: number;
   isOpen: boolean;
 }
 
-export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOpen, colIndex, setIsTaskModalOpen, type, taskIndex, isOpen }) => {
-  const [taskTitle, setTaskTitle] = React.useState('');
-  const [taskDescription, setTaskDescription] = React.useState('');
+export const ModalAddTask: React.FC<IModalAddTaskProps> = ({
+  setIsModalAddTaskOpen,
+  colIndex,
+  setIsTaskModalOpen,
+  type,
+  taskIndex,
+  isOpen,
+}) => {
+  const [taskTitle, setTaskTitle] = React.useState("");
+  const [taskDescription, setTaskDescription] = React.useState("");
   const [subtasksNames, setSubtasksNames] = React.useState([
     { title: "", isCompleted: false, id: uuidv4() },
   ]);
@@ -28,12 +34,8 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
 
   const { task } = useGetTask(colIndex, taskIndex);
 
-
-  
-
   React.useEffect(() => {
     if (type === "edit") {
-
       setSubtasksNames(
         task!.subtasks.map((subtask: any) => {
           return { ...subtask, id: uuidv4() };
@@ -43,7 +45,7 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
       setTaskTitle(task!.title);
       setTaskDescription(task!.description);
     }
-  }, [task, type])
+  }, [task, type]);
   
   const { mounted } = useMount({ isOpen });
 
@@ -53,11 +55,13 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
 
   const handleTaskTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(e.target.value);
-  }
+  };
 
-  const handleTaskDescriptionInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTaskDescriptionInput = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setTaskDescription(e.target.value);
-  }
+  };
 
   const handleSubtasksNameInput = (id: string, newValue: string) => {
     setSubtasksNames((prevState) => {
@@ -75,7 +79,7 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
       ...state,
       { title: "", isCompleted: false, id: uuidv4() },
     ]);
-  }
+  };
 
   const handleDeleteSubtasks = (id: string) => {
     setSubtasksNames((prevState) => prevState.filter((el) => el.id !== id));
@@ -104,7 +108,12 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
 
     if (type === "add") {
       dispatch(
-        boardsSlice.actions.addTask({ taskTitle, taskDescription, subtasksNames, colIndex })
+        boardsSlice.actions.addTask({
+          taskTitle,
+          taskDescription,
+          subtasksNames,
+          colIndex,
+        })
       );
     } else if (type === "edit") {
       dispatch(
@@ -120,32 +129,49 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
   };
 
   return (
-    <Modal isOpen={isOpen} onClick={(e) => {
-      if(e.target !== e.currentTarget) {
+    <Modal
+      isOpen={isOpen}
+      onClick={(e) => {
+        if (e.target !== e.currentTarget) {
         return;
       }
       setIsModalAddTaskOpen(false);
-    }}>
+      }}
+    >
       <ModalAddTaskContainer>
-        <h3>{type === 'edit' ? 'Редактировать' : 'Добавить новую'} задачу</h3>
+        <h3>{type === "edit" ? "Редактировать" : "Добавить новую"} задачу</h3>
 
         <div>
           <label>Имя задачи</label>
-          <TextInput id="board-name-input" value={taskTitle} onChange={handleTaskTitleInput} />
+          <TextInput
+            id="board-name-input"
+            value={taskTitle}
+            onChange={handleTaskTitleInput}
+          />
         </div>
 
         <div>
           <label>Описание</label>
-          <TextAreaContainer id="board-name-input" value={taskDescription} onChange={handleTaskDescriptionInput} />
+          <TextAreaInput
+            id="board-name-input"
+            value={taskDescription}
+            onChange={handleTaskDescriptionInput}
+          />
         </div>
 
         <div>
           <label>Подзадачи</label>
           {subtasksNames.map((subtask, index) => (
-            <div className='subtask-name' key={subtask.id}>
-              <TextInput id="subtask-name-input" value={subtask.title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSubtasksNameInput(subtask.id, e.target.value)} />
+            <div className="subtask-name" key={subtask.id}>
+              <TextInput
+                id="subtask-name-input"
+                value={subtask.title}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleSubtasksNameInput(subtask.id, e.target.value)
+                }
+              />
               <Icon onClick={() => handleDeleteSubtasks(subtask.id)}>
-                <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" >
+                <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                   <g fill="#828FA3" fillRule="evenodd">
                     <path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" />
                     <path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" />
@@ -161,9 +187,12 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({ setIsModalAddTaskOp
           <Button width='100%' onClick={() => {
             const isValid = validate();
             if (isValid === true) handleSubmit(type);
-          }}>{type === 'edit' ? 'Изменить' : 'Создать'} задачу</Button>
+            }}
+          >
+            {type === "edit" ? "Изменить" : "Создать"} задачу
+          </Button>
         </div>
       </ModalAddTaskContainer>
     </Modal>
-  )
-}
+  );
+};
