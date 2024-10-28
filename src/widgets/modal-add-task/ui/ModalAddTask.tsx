@@ -46,7 +46,7 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({
       setTaskDescription(task!.description);
     }
   }, [task, type]);
-  
+
   const { mounted } = useMount({ isOpen });
 
   if (!mounted) {
@@ -133,9 +133,9 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({
       isOpen={isOpen}
       onClick={(e) => {
         if (e.target !== e.currentTarget) {
-        return;
-      }
-      setIsModalAddTaskOpen(false);
+          return;
+        }
+        setIsModalAddTaskOpen(false);
       }}
     >
       <ModalAddTaskContainer>
@@ -182,11 +182,15 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({
           ))}
         </div>
 
-        <div className='buttons'>
-          <Button width='100%' onClick={handleAddNewSubtask}>+ Новая подзадача</Button>
-          <Button width='100%' onClick={() => {
-            const isValid = validate();
-            if (isValid === true) handleSubmit(type);
+        <div className="buttons">
+          <Button width="100%" onClick={handleAddNewSubtask}>
+            + Новая подзадача
+          </Button>
+          <Button
+            width="100%"
+            onClick={() => {
+              const isValid = validate();
+              if (isValid === true) handleSubmit(type);
             }}
           >
             {type === "edit" ? "Изменить" : "Создать"} задачу
