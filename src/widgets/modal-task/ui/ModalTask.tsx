@@ -1,14 +1,16 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import { ModalOverlay } from '../../../shared/ui/components/modal/ui/style'
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { ModalTaskContainer } from './style';
-import { Subtask } from '../../subtask';
-import { Dropdown } from '../../dropdown';
-import { ModalAddTask } from '../../modal-add-task';
-import { boardsSlice } from '../../../entities/board/model';
-import { Icon, Modal } from '../../../shared/ui/components';
-import { useGetTask } from '../../../shared/hooks/useGetTask';
-import { useMount } from '../../../shared/hooks/useMount';
+import React, { Dispatch, SetStateAction } from "react";
+import {
+  useAppDispatch,
+  useGetTask,
+  Icon,
+  Modal,
+  useMount,
+} from "@shared/index";
+import { ModalTaskContainer } from "./style";
+import { Subtask } from "../../subtask";
+import { Dropdown } from "../../dropdown";
+import { ModalAddTask } from "../../modal-add-task";
+import { boardsSlice } from "../../../entities/board/model";
 
 interface IModalTaskProps {
   setIsTaskModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -17,7 +19,12 @@ interface IModalTaskProps {
   isOpen: boolean;
 }
 
-export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIndex, taskIndex, isOpen }) => {
+export const ModalTask: React.FC<IModalTaskProps> = ({
+  setIsTaskModalOpen,
+  colIndex,
+  taskIndex,
+  isOpen,
+}) => {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = React.useState(false);
   const [isModalAddTaskOpen, setIsModalAddTaskOpen] = React.useState(false);
   const { task } = useGetTask(colIndex, taskIndex);
@@ -44,7 +51,7 @@ export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIn
   };
 
   const handleDropdown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setIsDropdownMenuOpen(!isDropdownMenuOpen)
+    setIsDropdownMenuOpen(!isDropdownMenuOpen);
   };
 
   const handleTaskEdit = () => {
@@ -62,33 +69,52 @@ export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIn
     <>
       <Modal onClick={(e) => handleClose(e)} isOpen={isOpen}>
         <ModalTaskContainer>
-          <div className='modal-task-header '>
+          <div className="modal-task-header ">
             <h3>{task?.title}</h3>
-            <Icon style={{ width: '10px', alignItems: "center" }} onClick={handleDropdown}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="30" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" color='#828fa3'>
+            <Icon
+              style={{ width: "10px", alignItems: "center" }}
+              onClick={handleDropdown}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="30"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                color="#828fa3"
+              >
                 <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                 <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                 <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
               </svg>
             </Icon>
-            {isDropdownMenuOpen && <Dropdown handleEdit={handleTaskEdit} handleDelete={handleTaskDelete} />}
+            {isDropdownMenuOpen && (
+              <Dropdown
+                handleEdit={handleTaskEdit}
+                handleDelete={handleTaskDelete}
+              />
+            )}
           </div>
 
-          <span className='task-description'>{task?.description}</span>
-          {Boolean(subtasks?.length) && (<div>
-            <label>Подзадачи ({completed} из {task?.subtasks.length})</label>
-            {subtasks?.map((subtask, index) => (
-              <Subtask
-                index={index}
-                taskIndex={taskIndex}
-                colIndex={colIndex}
-                key={index}
-              />
-            ))}
-          </div>)}
+          <span className="task-description">{task?.description}</span>
+          {Boolean(subtasks?.length) && (
+            <div>
+              <label>
+                Подзадачи ({completed} из {task?.subtasks.length})
+              </label>
+              {subtasks?.map((subtask, index) => (
+                <Subtask
+                  index={index}
+                  taskIndex={taskIndex}
+                  colIndex={colIndex}
+                  key={index}
+                />
+              ))}
+            </div>
+          )}
         </ModalTaskContainer>
       </Modal>
-
 
       <ModalAddTask
         setIsModalAddTaskOpen={setIsModalAddTaskOpen}
@@ -98,8 +124,6 @@ export const ModalTask: React.FC<IModalTaskProps> = ({ setIsTaskModalOpen, colIn
         colIndex={colIndex}
         isOpen={isModalAddTaskOpen}
       />
-
     </>
-
-  )
-}
+  );
+};

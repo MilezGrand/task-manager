@@ -1,6 +1,6 @@
 import React from 'react'
 import { TaskContainer } from './style';
-import { useAppSelector } from '../../../shared/hooks/redux';
+import { useAppSelector } from '@shared/index';
 import { ModalTask } from '../../modal-task';
 
 interface TaskProps {

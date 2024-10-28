@@ -1,7 +1,6 @@
 import React from "react";
 
-
-export const useMount = ({isOpen}: {isOpen: boolean}) => {
+const useMount = ({ isOpen }: { isOpen: boolean }) => {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -18,3 +17,5 @@ export const useMount = ({isOpen}: {isOpen: boolean}) => {
     mounted,
   };
 };
+
+export default useMount;

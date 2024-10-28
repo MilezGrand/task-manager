@@ -1,9 +1,9 @@
-import React from 'react'
-import { HomeLayout } from './style'
-import { useAppSelector } from '../../../shared/hooks/redux';
-import { RootState } from '../../../app/store';
-import { AddColumn, Column } from '../../column';
-import { AddTask, Task } from '../../Task';
+import React from "react";
+import { HomeLayout } from "./style";
+import { useAppSelector } from "@shared/index";
+import { RootState } from "../../../app/store";
+import { AddColumn, Column } from "../../column";
+import { AddTask, Task } from "../../Task";
 
 export const Home: React.FC = () => {
   const boards = useAppSelector((state: RootState) => state.boards);
@@ -13,7 +13,6 @@ export const Home: React.FC = () => {
     <HomeLayout>
       {board?.columns.map((column, colIndex) => (
         <Column colIndex={colIndex} key={colIndex}>
-
           {column.tasks.map((task, taskIndex) => (
             <Task colIndex={colIndex} taskIndex={taskIndex} key={taskIndex} />
           ))}
@@ -22,5 +21,5 @@ export const Home: React.FC = () => {
       ))}
       <AddColumn />
     </HomeLayout>
-  )
-}
+  );
+};

@@ -1,8 +1,7 @@
-import React from 'react'
-import { useAppDispatch } from '../../../shared/hooks/redux';
-import { SubtaskContainer } from './style';
-import { boardsSlice } from '../../../entities/board/model';
-import { useGetTask } from '../../../shared/hooks/useGetTask';
+import React from "react";
+import { useAppDispatch, useGetTask } from "@shared/index";
+import { SubtaskContainer } from "./style";
+import { boardsSlice } from "../../../entities/board/model";
 
 interface ISubtaskProps {
   index: number;
@@ -10,7 +9,11 @@ interface ISubtaskProps {
   colIndex: number | undefined;
 }
 
-export const Subtask: React.FC<ISubtaskProps> = ({ index, taskIndex, colIndex }) => {
+export const Subtask: React.FC<ISubtaskProps> = ({
+  index,
+  taskIndex,
+  colIndex,
+}) => {
   const dispatch = useAppDispatch();
   const { task } = useGetTask(colIndex, taskIndex);
   const subtask = task?.subtasks.find((subtask, i) => i === index);
@@ -25,11 +28,9 @@ export const Subtask: React.FC<ISubtaskProps> = ({ index, taskIndex, colIndex })
   return (
     <SubtaskContainer>
       <div>
-        <input type='checkbox' checked={checked} onChange={handleCheck} />
-        <span className={checked ? 'checked' : ''}>
-          {subtask?.title}
-        </span>
+        <input type="checkbox" checked={checked} onChange={handleCheck} />
+        <span className={checked ? "checked" : ""}>{subtask?.title}</span>
       </div>
     </SubtaskContainer>
-  )
-}
+  );
+};
