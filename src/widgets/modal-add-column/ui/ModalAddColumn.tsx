@@ -8,7 +8,7 @@ import {
   useAppDispatch,
 } from "@shared/index";
 import { ModalAddBoardContainer } from "../../modal-add-board/ui/style";
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 
 interface IModalAddColumnProps {
   setIsColumnModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -92,7 +92,7 @@ export const ModalAddColumn: React.FC<IModalAddColumnProps> = ({
         </div>
 
         <div className="buttons">
-          <Button width="100%" onClick={handleSubmit}>
+          <Button onClick={handleSubmit}>
             {type === "edit" ? "Изменить" : "Создать"} колонку
           </Button>
         </div>

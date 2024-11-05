@@ -11,7 +11,7 @@ import {
 } from "@shared/index";
 import { ModalAddTaskContainer } from "./style";
 import { v4 as uuidv4 } from "uuid";
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 
 interface IModalAddTaskProps {
   setIsModalAddTaskOpen: Dispatch<SetStateAction<boolean>>;
@@ -189,11 +189,8 @@ export const ModalAddTask: React.FC<IModalAddTaskProps> = ({
         </div>
 
         <div className="buttons">
-          <Button width="100%" onClick={handleAddNewSubtask}>
-            + Новая подзадача
-          </Button>
+          <Button onClick={handleAddNewSubtask}>+ Новая подзадача</Button>
           <Button
-            width="100%"
             onClick={() => {
               const isValid = validate();
               if (isValid === true) handleSubmit(type);

@@ -6,7 +6,7 @@ import {
   TextInput,
   useMount,
 } from "@shared/index";
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 import { ModalAddBoardContainer } from "./style";
 
 interface IModalAddBoardProps {
@@ -72,7 +72,6 @@ export const ModalAddBoard: React.FC<IModalAddBoardProps> = ({
 
         <div className="buttons">
           <Button
-            width="100%"
             onClick={() => {
               const isValid = validate();
               if (isValid === true) handleSubmit();

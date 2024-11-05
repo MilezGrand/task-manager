@@ -10,7 +10,7 @@ import { ModalTaskContainer } from "./style";
 import { Subtask } from "../../subtask";
 import { Dropdown } from "../../dropdown";
 import { ModalAddTask } from "../../modal-add-task";
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 
 interface IModalTaskProps {
   setIsTaskModalOpen: Dispatch<SetStateAction<boolean>>;

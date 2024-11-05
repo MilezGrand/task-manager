@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppDispatch, useGetTask } from "@shared/index";
 import { SubtaskContainer } from "./style";
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 
 interface ISubtaskProps {
   index: number;

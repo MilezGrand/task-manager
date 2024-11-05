@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { SideBarContainer, SideBarList, SideBarListItem } from "./styles";
 import { useAppDispatch, useAppSelector, Button, Icon } from "@shared/index";
 import { RootState } from "../../../app/store";
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 
 interface ISideBarProps {
   close: string;
@@ -58,7 +58,7 @@ export const SideBar: React.FC<ISideBarProps> = ({
         })}
       </SideBarList>
 
-      <Button className="add-board" onClick={() => setIsBoardModalOpen(true)}>
+      <Button variant="secondary" onClick={() => setIsBoardModalOpen(true)}>
         <Icon>
           <svg
             xmlns="http://www.w3.org/2000/svg"

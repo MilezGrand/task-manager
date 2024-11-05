@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { boardsSlice } from "../../entities/board/model";
+import { boardsSlice } from "../../entities/task/model";
 
 const rootReducer = boardsSlice.reducer;
 
@@ -12,4 +12,4 @@ export function setupStore() {
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = AppStore["dispatch"];

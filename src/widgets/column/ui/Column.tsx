@@ -1,7 +1,7 @@
 import React from "react";
 import { ColumnContainer } from "./style";
 
-import { boardsSlice } from "../../../entities/board/model";
+import { boardsSlice } from "../../../entities/task/model";
 import { Dropdown } from "../../dropdown";
 import { ModalAddColumn } from "../../modal-add-column";
 import { Icon, useAppDispatch, useGetColumn } from "@shared/index";
